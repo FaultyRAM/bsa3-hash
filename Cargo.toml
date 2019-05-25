@@ -9,3 +9,11 @@ readme = "README.md"
 keywords = ["BSA", "Morrowind", "hash"]
 categories = ["algorithms", "no-std"]
 license = "Apache-2.0 OR MIT"
+
+[dev-dependencies.criterion]
+version = "0.2"
+default-features = false
+
+[[bench]]
+name = "all"
+harness = false
