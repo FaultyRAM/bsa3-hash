@@ -1,0 +1,11 @@
+[package]
+name = "bsa3-hash"
+version = "0.1.0"
+authors = ["FaultyRAM <explodingpsu@gmail.com>"]
+edition = "2018"
+description = "The hash function used in BSA files for *The Elder Scrolls III: Morrowind*."
+repository = "https://github.com/FaultyRAM/bsa3-hash"
+readme = "README.md"
+keywords = ["BSA", "Morrowind", "hash"]
+categories = ["algorithms", "no-std"]
+license = "Apache-2.0 OR MIT"
