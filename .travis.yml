@@ -1,0 +1,24 @@
+sudo: false
+os:
+  - linux
+  - osx
+  - windows
+dist: xenial
+language: rust
+rust:
+  - stable
+  - beta
+  - nightly
+matrix:
+  allow_failures:
+    - rust:
+      - beta
+      - nightly
+  fast_finish: true
+install:
+  - rustup -v component add clippy rustfmt
+build:
+  - cargo clippy -vv --benches --tests
+  - cargo test -vv
+  - cargo doc -vv
+  - cargo fmt -v --all -- --check
