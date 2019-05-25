@@ -17,7 +17,7 @@ matrix:
   fast_finish: true
 install:
   - rustup -v component add clippy rustfmt
-build:
+script:
   - cargo clippy -vv --benches --tests
   - cargo test -vv
   - cargo doc -vv
