@@ -11,9 +11,8 @@ rust:
   - nightly
 matrix:
   allow_failures:
-    - rust:
-      - beta
-      - nightly
+    - rust: beta
+    - rust: nightly
   fast_finish: true
 install:
   - rustup component add clippy rustfmt
