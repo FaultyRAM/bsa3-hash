@@ -16,9 +16,9 @@ matrix:
       - nightly
   fast_finish: true
 install:
-  - rustup -v component add clippy rustfmt
+  - rustup component add clippy rustfmt
 script:
-  - cargo clippy -vv --benches --tests
-  - cargo test -vv
-  - cargo doc -vv
-  - cargo fmt -v --all -- --check
+  - cargo clippy --benches --tests
+  - cargo test
+  - cargo doc
+  - cargo fmt --all -- --check
