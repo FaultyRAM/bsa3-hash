@@ -25,10 +25,10 @@
 )]
 
 #[inline]
-/// Computes the left and right hashes of a given byte sequence.
+/// Splits a given byte sequence in two and computes the hash for each half.
 ///
 /// The return value is a tuple of two `u32`s: the hash of the left half, and the hash of the right
-/// half.
+/// half, in that order.
 pub fn calculate<T: AsRef<[u8]>>(input: T) -> (u32, u32) {
     const MASK: u32 = 0b1_1111;
     let bytes = input.as_ref();
