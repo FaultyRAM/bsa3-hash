@@ -33,20 +33,16 @@ pub fn calculate<T: AsRef<[u8]>>(input: T) -> (u32, u32) {
     const MASK: u32 = 0b1_1111;
     let bytes = input.as_ref();
     let (left, right) = bytes.split_at(bytes.len() >> 1);
-    let (mut a, mut b, mut off) = (0, 0, 0);
+    let (mut a, mut b, mut shift) = (0, 0, 0);
     for &n in left {
-        let x = u32::from(n);
-        let shift = off & MASK;
-        a ^= x << shift;
-        off = off.wrapping_add(8);
+        a ^= u32::from(n) << shift;
+        shift = (shift + 8) & MASK;
     }
-    off = 0;
+    shift = 0;
     for &n in right {
-        let y = u32::from(n);
-        let shift = off & MASK;
-        let temp = y << shift;
+        let temp = u32::from(n) << shift;
         b = (b ^ temp).rotate_right(temp & MASK);
-        off = off.wrapping_add(8);
+        shift = (shift + 8) & MASK;
     }
     (a, b)
 }
