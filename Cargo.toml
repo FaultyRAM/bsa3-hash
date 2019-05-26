@@ -1,6 +1,6 @@
 [package]
 name = "bsa3-hash"
-version = "1.0.0"
+version = "1.0.1"
 authors = ["FaultyRAM <explodingpsu@gmail.com>"]
 edition = "2018"
 description = "The hash function used in BSA files for *The Elder Scrolls III: Morrowind*."
