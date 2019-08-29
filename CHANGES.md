@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+* Update criterion to 0.3.
+
 ## 1.0.1
 
 * Refactored for increased performance.

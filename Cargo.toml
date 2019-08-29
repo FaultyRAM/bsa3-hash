@@ -10,9 +10,8 @@ keywords = ["BSA", "Morrowind", "hash"]
 categories = ["algorithms", "no-std"]
 license = "Apache-2.0 OR MIT"
 
-[dev-dependencies.criterion]
-version = "0.2"
-default-features = false
+[dev-dependencies]
+criterion = "^0.3.0"
 
 [profile.release]
 lto = true
