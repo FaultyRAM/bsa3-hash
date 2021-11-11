@@ -2,7 +2,7 @@
 name = "bsa3-hash"
 version = "1.0.2"
 authors = ["FaultyRAM <explodingpsu@gmail.com>"]
-edition = "2018"
+edition = "2021"
 description = "The hash function used in BSA files for *The Elder Scrolls III: Morrowind*."
 repository = "https://github.com/FaultyRAM/bsa3-hash"
 readme = "README.md"
