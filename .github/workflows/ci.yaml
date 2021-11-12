@@ -1,0 +1,42 @@
+name: Continuous Integration
+on: [push, pull_request]
+jobs:
+  build-checks:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+        rust:
+          - name: stable
+            allow_failure: false
+          - name: beta
+            allow_failure: false
+          - name: nightly
+            allow_failure: true
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ matrix.rust.name }}
+          override: true
+          components: clippy, rustfmt
+        continue-on-error: ${{ matrix.rust.allow_failure }}
+      - uses: actions-rs/cargo@v1
+        with:
+          command: clippy
+          args: --benches --tests
+        continue-on-error: ${{ matrix.rust.allow_failure }}
+      - uses: actions-rs/cargo@v1
+        with:
+          command: test
+        continue-on-error: ${{ matrix.rust.allow_failure }}
+      - uses: actions-rs/cargo@v1
+        with:
+          command: doc
+        continue-on-error: ${{ matrix.rust.allow_failure }}
+      - uses: actions-rs/cargo@v1
+        with:
+          command: fmt
+          args: --all -- --check
+        continue-on-error: ${{ matrix.rust.allow_failure }}
+

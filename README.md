@@ -1,6 +1,6 @@
 # bsa3-hash
 
-[![Travis CI](https://api.travis-ci.com/FaultyRAM/bsa3-hash.svg)](https://travis-ci.com/FaultyRAM/bsa3-hash)
+![GitHub Actions](https://github.com/FaultyRAM/bsa3-hash/actions/workflows/ci.yaml/badge.svg)
 [![Crates.io](https://img.shields.io/crates/v/bsa3-hash.svg)](https://crates.io/crates/bsa3-hash)
 [![Docs.rs](https://docs.rs/bsa3-hash/badge.svg)](https://docs.rs/bsa3-hash)
 
