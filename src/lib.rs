@@ -18,16 +18,20 @@
     clippy::pedantic,
     rustdoc::all
 )]
+#![allow(clippy::cast_lossless, clippy::must_use_candidate)]
 
 #[inline]
-/// Splits a given byte sequence in two and computes the hash for each half.
-///
-/// The return value is a tuple of two `u32`s: the hash of the left half, and the hash of the right
-/// half, in that order.
-pub fn calculate<T: AsRef<[u8]>>(input: T) -> (u32, u32) {
+/// Computes the hash of a given byte sequence, expressed as a 64-bit integer.
+pub fn calculate(input: &[u8]) -> u64 {
+    let (left, right) = calculate_tuple(input);
+    (right as u64) << 32 | left as u64
+}
+
+#[inline]
+/// Computes the hash of a given byte sequence, expressed as a tuple of two 32-bit integers.
+pub fn calculate_tuple(input: &[u8]) -> (u32, u32) {
     const MASK: u32 = 0b1_1111;
-    let bytes = input.as_ref();
-    let (left, right) = bytes.split_at(bytes.len() >> 1);
+    let (left, right) = input.split_at(input.len() >> 1);
     let (mut a, mut b, mut shift) = (0, 0, 0);
     for &n in left {
         a ^= u32::from(n) << shift;
@@ -51,7 +55,10 @@ mod tests {
     #[inline]
     fn test_hashes(list: &[(&str, u32, u32)]) {
         for &(filename, left_hash, right_hash) in list {
-            assert_eq!(super::calculate(filename), (left_hash, right_hash));
+            let number = super::calculate(filename.as_bytes());
+            let tuple = super::calculate_tuple(filename.as_bytes());
+            assert_eq!(number, (tuple.1 as u64) << 32 | tuple.0 as u64);
+            assert_eq!(tuple, (left_hash, right_hash));
         }
     }
 

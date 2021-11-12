@@ -16,7 +16,7 @@ macro_rules! compute_hashes {
         $c.bench_function($id, |b| {
             b.iter(|| {
                 for &(filename, _, _) in $list {
-                    bsa3_hash::calculate(black_box(filename));
+                    bsa3_hash::calculate(black_box(filename.as_bytes()));
                 }
             })
         });
