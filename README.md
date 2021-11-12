@@ -13,32 +13,34 @@ Add bsa3-hash to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-bsa3-hash = "^1.0.0"
+bsa3-hash = "^2.0.0"
 ```
 
 Then call `bsa3_hash::calculate` as needed:
 
 ```rust
 fn main() {
-    assert_eq!(bsa3_hash::calculate(
-        r"meshes\m\probe_journeyman_01.nif",
-        (0x0002_0336, 0xBB50_0695)
-    ));
+    assert_eq!(
+        bsa3_hash::calculate(r"meshes\m\probe_journeyman_01.nif".as_bytes()),
+        0xBB50_0695_0002_0336
+    );
 }
-```
-
-If you're using Rust 2015, you'll need to add bsa3-hash to your crate root as well:
-
-```rust
-extern crate bsa3_hash;
 ```
 
 ## Benchmarking
 
 bsa3-hash supports benchmarking via [criterion](https://crates.io/crates/criterion). Currently we
 test and benchmark against three data sets: the filename/hash lists from Morrowind.bsa,
-Tribunal.bsa and Bloodmoon.bsa. To run the benchmarks, simply run `cargo bench` from the source
-tree.
+Tribunal.bsa and Bloodmoon.bsa. To run the benchmarks, simply do the following:
+
+* Install cargo-criterion, if you haven't already done so:
+  ```text
+  cargo install cargo-criterion
+  ```
+* Run cargo-criterion in the crate directory:
+  ```text
+  cargo criterion
+  ```
 
 ## License
 

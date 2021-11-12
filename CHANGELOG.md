@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 
 ## [Unreleased]
 
+## [2.0.0] - 2022-11-12
+### Changed
+- Backwards-incompatible changes have been introduced to the API. Now it consists of two functions:
+  - `calculate` - returns a `u64`
+  - `calculate_tuple` - returns a `(u32, u32)`, similar to `calculate` in 1.0.x
+  Unlike 1.0.x, these functions are not generic. This enables upgrading them to `const fn` in a
+  future release, without breaking the API (again).
+
 ## [1.0.2] - 2019-08-29
 ### Changed
 - Updated criterion to 0.3. (No code changes were necessary in order to support this.)
