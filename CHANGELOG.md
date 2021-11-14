@@ -46,7 +46,9 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 
 [Keep a Changelog]: https://keepachangelog.com/en/1.0.0/
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html
-[Unreleased]: https://github.com/FaultyRAM/bsa3-hash/compare/1.0.2...HEAD
+[Unreleased]: https://github.com/FaultyRAM/bsa3-hash/compare/3.0.0...HEAD
+[3.0.0]: https://github.com/FaultyRAM/bsa3-hash/compare/2.0.0...3.0.0
+[2.0.0]: https://github.com/FaultyRAM/bsa3-hash/compare/1.0.2...2.0.0
 [1.0.2]: https://github.com/FaultyRAM/bsa3-hash/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/FaultyRAM/bsa3-hash/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/FaultyRAM/bsa3-hash/releases/tag/1.0.0
