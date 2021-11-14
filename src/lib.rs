@@ -12,7 +12,7 @@
 //! ```no_run
 //! assert_eq!(
 //!     bsa3_hash::calculate(r"meshes\m\probe_journeyman_01.nif".as_bytes()),
-//!     0xBB50_0695_0002_0336
+//!     (0x0002_0336, 0xBB50_0695)
 //! );
 //! ```
 
@@ -30,27 +30,14 @@
 #![allow(clippy::cast_lossless, clippy::must_use_candidate)]
 
 #[inline]
-/// Computes the hash of a given byte sequence, expressed as a 64-bit integer.
+/// Computes the hash of a given byte sequence, expressed as a tuple of two 32-bit integers.
 ///
 /// # Example
 ///
 /// ```no_run
 /// println!("{:?}", bsa3_hash::calculate(b"foo"));
 /// ```
-pub fn calculate(input: &[u8]) -> u64 {
-    let (left, right) = calculate_tuple(input);
-    (right as u64) << 32 | left as u64
-}
-
-#[inline]
-/// Computes the hash of a given byte sequence, expressed as a tuple of two 32-bit integers.
-///
-/// # Example
-///
-/// ```no_run
-/// println!("{:?}", bsa3_hash::calculate_tuple(b"foo"));
-/// ```
-pub fn calculate_tuple(input: &[u8]) -> (u32, u32) {
+pub fn calculate(input: &[u8]) -> (u32, u32) {
     const MASK: u32 = 0b1_1111;
     let (left, right) = input.split_at(input.len() >> 1);
     let (mut a, mut b, mut shift) = (0, 0, 0);
@@ -76,10 +63,10 @@ mod tests {
     #[inline]
     fn test_hashes(list: &[(&str, u32, u32)]) {
         for &(filename, left_hash, right_hash) in list {
-            let number = super::calculate(filename.as_bytes());
-            let tuple = super::calculate_tuple(filename.as_bytes());
-            assert_eq!(number, (tuple.1 as u64) << 32 | tuple.0 as u64);
-            assert_eq!(tuple, (left_hash, right_hash));
+            assert_eq!(
+                crate::calculate(filename.as_bytes()),
+                (left_hash, right_hash)
+            );
         }
     }
 

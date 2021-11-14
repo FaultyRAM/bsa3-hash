@@ -13,7 +13,7 @@ Add bsa3-hash to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-bsa3-hash = "^2.0.0"
+bsa3-hash = "^3.0.0"
 ```
 
 Then call `bsa3_hash::calculate` as needed:
@@ -22,7 +22,7 @@ Then call `bsa3_hash::calculate` as needed:
 fn main() {
     assert_eq!(
         bsa3_hash::calculate(r"meshes\m\probe_journeyman_01.nif".as_bytes()),
-        0xBB50_0695_0002_0336
+        0x0002_0336, 0xBB50_0695
     );
 }
 ```

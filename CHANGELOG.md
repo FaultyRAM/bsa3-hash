@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 
 ## [Unreleased]
 
+## [3.0.0] - 2022-11-14
+### Changed
+- 2.0.0 introduced a function, `calculate`, which returned a `u64`. This is incorrect, because:
+  - The hash algorithm calculates two values, `left` and `right`;
+  - Records in a BSA archive are sorted by hash, `left` being more significant than `right` (i.e.
+    a possible `u64` representation would cast `left`, a 32-bit value, to a `u64` and shift it left
+    by 32 bits);
+  - However, the hash values are stored as two 32-bit little-endian integers, not one 64-bit
+    integer (i.e. `left` appears before `right`);
+  - So the function doesn't make any sense. 😅
+  This function has been removed, and `calculate_tuple` has been renamed to `calculate`. Apologies
+  for the chaos.
+
 ## [2.0.0] - 2022-11-12
 ### Changed
 - Backwards-incompatible changes have been introduced to the API. Now it consists of two functions:
